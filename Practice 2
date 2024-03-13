@@ -1,0 +1,18 @@
+-- bai tap 1
+SELECT DISTINCT CITY  FROM STATION
+WHERE ID%2=0  
+-- bai tap 2
+SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;
+-- bai tap 3
+SELECT CAST(CEIL(avg(Salary) - avg(CAST(REPLACE(Salary, '0', '')AS FLOAT)))AS FLOAT) AS Difference FROM Employees
+-- bai tap 4
+SELECT
+ROUND(CAST(sum(item_count * order_occurrences) / sum(order_occurences) DESCIMAL) 1) á mean
+from items_per_order
+-- bai tap 5
+SELECT candidate_id
+FROM candidates
+WHERE skill IN ('Python', 'Tableau', 'PostgreSQL')
+GROUP BY candidate_id
+HAVING COUNT(DISTINCT skill) = 3
+ORDER BY candidate_id ASC;
