@@ -7,7 +7,7 @@ SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;
 SELECT CAST(CEIL(avg(Salary) - avg(CAST(REPLACE(Salary, '0', '')AS FLOAT)))AS FLOAT) AS Difference FROM Employees
 -- bai tap 4
 SELECT
-ROUND(CAST(sum(item_count * order_occurrences) / sum(order_occurences) DESCIMAL) 1) á mean
+ROUND(CAST(sum(item_count * order_occurrences) / sum(order_occurences) DECIMAL) 1) as mean
 from items_per_order
 -- bai tap 5
 SELECT candidate_id
@@ -16,3 +16,43 @@ WHERE skill IN ('Python', 'Tableau', 'PostgreSQL')
 GROUP BY candidate_id
 HAVING COUNT(DISTINCT skill) = 3
 ORDER BY candidate_id ASC;
+-- bai tap 6
+SELECT candidate_id
+FROM candidates
+WHERE skill in ('Python', 'Tableau', ' PostgreSQL')
+GROUP BY candidate_id
+HAVING Count(skill) =3;
+-- bai tap 7
+SELECT  card_name, max(issued_amount) - min(issued_amount) AS difference
+FROM monthly_cards_issued  
+GROUP BY card_name
+ORDER BY difference desc;  
+-- bai tap 8
+SELECT manufacturer, 
+COUNT(drug) AS drug_count, 
+ABS (SUM(cogs - total_sales)) AS total_loss
+FROM pharmacy_sales 
+WHERE cogs > total_sales
+GROUP BY manufacturer
+ORDER BY total_loss desc;
+-- bai tap 9
+SELECT * FROM Cinema
+WHERE id%2=1 AND description<>'boring'
+ORDER BY rating DESC;
+-- bai tap 10
+SELECT teacher_id, 
+COUNT (DISTINCT subject_id) AS cnt
+FROM teacher
+GROUP BY teacher_id;
+-- bai tap 11
+SELECT user_id, COUNT(follower_id) AS followers_count
+FROM Followers
+GROUP BY user_id
+ORDER BY user_id;
+-- bai tap 12
+SELECT class
+FROM Courses
+GROUP BY class
+HAVING COUNT (student)>=5;
+
+
